@@ -128,7 +128,8 @@ def apply_scaler(df: pd.DataFrame, stats: dict, feat_cols: list, by_ticker=True)
                 out.loc[g.index, c] = (g[c] - mu[c]) / (sd[c] + 1e-12)
     else:
         par = stats["__global__"]
-        mu = par["mean"]; sd = par["std"]
+        mu = par["mean"]
+        sd = par["std"]
         out[feat_cols] = (out[feat_cols] - pd.Series(mu)) / (pd.Series(sd) + 1e-12)
     return out
 

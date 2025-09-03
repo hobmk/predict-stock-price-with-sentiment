@@ -1,40 +1,32 @@
 language: "ko"
 
-review:
-  on:
-    pull_request: true
-    push: false
-  level: standard
-  checks:
-    style: true
-    bugs: true
-    security: true
-    complexity: true
-    tests: true
-    docs: true
-  exclude:
-    - "data/**"
-    - "**/*.npz"
-    - "**/*.parquet"
-    - "**/*.pt"
-    - "**/__pycache__/**"
-    - ".venv/**"
-    - ".idea/**"
-    - ".vscode/**"
-  weights:
-    "scripts/**": 1.0
-    "tests/**": 1.0
-    "README.md": 0.5
-  comments:
-    suggestions: true
-    summarize_findings: true
-    limit: 50
-  fail_on:
-    critical_issues: false
-    security_issues: false
+reviews:
+  profile: "chill"
+  auto_review:
+    enabled: true
+    base_branches: ["main"]
+  path_filters:
+    - "!data/**"
+    - "!**/*.npz"
+    - "!**/*.parquet"
+    - "!**/*.pt"
+    - "!**/__pycache__/**"
+    - "!.venv/**"
+    - "!.idea/**"
+    - "!.vscode/**"
+  tools:
+    ruff:
+      enabled: true
+    markdownlint:
+      enabled: true
+    actionlint:
+      enabled: true
+  finishing_touches:
+    docstrings:
+      enabled: true
+    unit_tests:
+      enabled: true
 
-conventions:
-  python_version: "3.11"
-  formatting: "black"
-  lint: "ruff"
-  test_framework: "pytest"
+knowledge_base:
+  code_guidelines:
+    enabled: true

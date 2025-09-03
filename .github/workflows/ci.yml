@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@<checkout-v4-commit-sha> # pin to commit SHA
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@<setup-python-v5-commit-sha> # pin to commit SHA
         with:
           python-version: "3.11.5"
 

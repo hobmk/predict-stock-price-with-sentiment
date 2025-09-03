@@ -1,6 +1,7 @@
 # 지정 10종목, 최근 5년 일봉 OHLCV 수집
 
-import os, time
+import os
+import time
 from datetime import datetime, timedelta
 import pandas as pd
 import yfinance as yf

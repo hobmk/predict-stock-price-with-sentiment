@@ -10,7 +10,6 @@
 import os
 import json
 import argparse
-from datetime import datetime
 import numpy as np
 import pandas as pd
 
@@ -123,7 +122,8 @@ def apply_scaler(df: pd.DataFrame, stats: dict, feat_cols: list, by_ticker=True)
                 # 티커가 train에 없었던 경우(일반적으론 없음) → 글로벌 평균 사용
                 par = stats.get("__global__", {"mean":{c:0. for c in feat_cols},
                                                "std": {c:1. for c in feat_cols}})
-            mu = par["mean"]; sd = par["std"]
+            mu = par["mean"]
+            sd = par["std"]
             for c in feat_cols:
                 out.loc[g.index, c] = (g[c] - mu[c]) / (sd[c] + 1e-12)
     else:

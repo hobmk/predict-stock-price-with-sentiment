@@ -11,3 +11,6 @@ data/processed/
 # 로그/캐시 무시
 logs/
 cache/
+
+# pytorch test
+tests/test_pytorch.py

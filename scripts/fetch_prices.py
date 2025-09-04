@@ -32,9 +32,18 @@ def fetch_one(ticker: str, start: str, end: str, interval="1d") -> pd.DataFrame:
         interval=interval,
         auto_adjust=False,
         progress=False,
+        # group_by="column",  # 기본값이지만 명시해도 무방
     )
     if df is None or df.empty:
         return pd.DataFrame()
+
+    # 1) MultiIndex 컬럼이면 평탄화
+    if isinstance(df.columns, pd.MultiIndex):
+        # level 0: ['Open','High','Low','Close','Adj Close','Volume']
+        # level 1: [ticker, ...]
+        df.columns = [c[0] for c in df.columns]
+
+    # 2) 표준 컬럼명으로 변경
     df = (
         df.rename(
             columns={
@@ -48,7 +57,11 @@ def fetch_one(ticker: str, start: str, end: str, interval="1d") -> pd.DataFrame:
         .reset_index()
         .rename(columns={"Date": "date"})
     )
+
+    # 3) 티커 열 삽입
     df.insert(1, "ticker", ticker)
+
+    # 4) 필요한 컬럼만
     return df[["date", "ticker", "open", "high", "low", "close", "volume"]]
 
 

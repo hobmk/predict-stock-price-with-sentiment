@@ -4,10 +4,20 @@ __pycache__/
 *.pyo
 *.pyd
 
-# 데이터 무시
+# 주가 데이터 무시
 data/raw/
 data/processed/
+
+# 뉴스 데이터 무시
+debug/
+news_major/
 
 # 로그/캐시 무시
 logs/
 cache/
+scripts/__pycache__/
+
+# pytorch test
+tests/test_pytorch.py
+
+# 환경설정 무시
